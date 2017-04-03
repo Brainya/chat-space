@@ -1,3 +1,57 @@
 .notice
   %p.notice__text
     チャットグループが作成されました。
+
+.contents
+  .contents__left
+    .contents__left__user
+      .contents__left__user__name
+        takashi
+      %ul.contents__left__user__control-list
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__new{:class => "fa fa-pencil-square-o fa-lg"}
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__settings{:class => "fa fa-cog fa-lg"}
+    %ul.contents__left__message-list
+      %li.contents__left__message-list__item
+        .contents__left__message-list__item__roomname
+          Sampleグループ
+        .contents__left__message-list__item__recentmsg
+          hello world
+      %li.contents__left__message-list__item
+        .contents__left__message-list__item__roomname
+          Sample2グループ
+        .contents__left__message-list__item__recentmsg
+          good bye world
+  .contents__right
+    .contents__right__roominfo
+      .contents__right__roominfo__name
+        Sampleグループ
+      .contents__right__roominfo__members
+        Members: takashi, tarou
+      .contents__right__roominfo__editbtn
+        Edit
+    %ul.contents__right__message-list
+      %li.contents__right__message-list__item
+        .contents__right__message-list__item__header
+          %span.contents__right__message-list__item__header__username
+            tarou
+          %span.contents__right__message-list__item__header__date
+            2017/01/01 00:00:00
+        .contents__right__message-list__item__body
+          %p.contents__right__message-list__item__body__text
+            good bye world
+      %li.contents__right__message-list__item
+        .contents__right__message-list__item__header
+          %span.contents__right__message-list__item__header__username
+            takashi
+          %span.contents__right__message-list__item__header__date
+            2017/01/01 00:00:01
+        .contents__right__message-list__item__body
+          %p.contents__right__message-list__item__body__text
+            hello world
+    .contents__right__footer
+      .contents__right__footer__form
+        %input.contents__right__footer__form__textarea{:name => "text", :size => "90", :placeholder => "type a message"}
+          %i.contents__right__footer__form__textarea__select-pic{:class => "fa fa-picture-o fa-lg"}
+        %input.contents__right__footer__form__sendbtn{:type => "submit", :value => "Send"}
