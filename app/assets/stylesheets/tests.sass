@@ -13,13 +13,13 @@ $white-color: #FFF
   bottom: $bottom
   left: $left
 
-@mixin backgroundcolor-color($background-color: #FFF, $color: #FFF)
+@mixin backgroundcolor-color($background-color: $white-color, $color: $white-color)
   background-color: $background-color
   color: $color
 
 .notice
   @include width-height-padding-margin(100%, 30px, auto, auto)
-  @include backgroundcolor-color(#38AEF0, #FFF)
+  @include backgroundcolor-color(#38AEF0, $white-color)
   @include position-size(fixed, auto, auto, auto, auto)
   text-align: center
   line-height: 30px
@@ -30,11 +30,11 @@ $white-color: #FFF
   position: relative
   &__left
     @include width-height-padding-margin(300px, 100%, 0 20px, auto)
-    @include backgroundcolor-color(#2F3E51, #FFF)
+    @include backgroundcolor-color(#2F3E51, $white-color)
     @include position-size(absolute, 30px, auto, auto, auto)
     &__user
       @include width-height-padding-margin(auto, 110px, 0 20px, 0 -20px)
-      @include backgroundcolor-color(#253141, #FFF)
+      @include backgroundcolor-color(#253141, $white-color)
       line-height: 120px
       &__name
         font-size: 16px
@@ -49,7 +49,7 @@ $white-color: #FFF
           &__new
           &__settings
     &__message-list
-      color: #FFF
+      color: $white-color
       padding-top: 20px
       &__item
         padding-bottom: 40px
@@ -74,14 +74,14 @@ $white-color: #FFF
         color: #999
       &__editbtn
         @include width-height-padding-margin(30px, 40px, 0 20px, auto)
-        @include backgroundcolor-color(#FFF, #38AEF0)
+        @include backgroundcolor-color($white-color, #38AEF0)
         border: 1px solid #38AEF0
         text-align: center
         line-height: 40px
         @include position-size(absolute, 28px, 40px, auto, auto)
     &__message-list
       @include width-height-padding-margin(auto, auto, 46px 40px 0 40px, 0 -20px)
-      background-color: #FFF
+      background-color: $white-color
       &__item
         padding-bottom: 40px
         &__header
@@ -107,11 +107,11 @@ $white-color: #FFF
         display: inline-flex
         &__textarea
           @include width-height-padding-margin(100%, 100%, 0 0 0 10px, 0 15px 0 0)
-          @include backgroundcolor-color(#FFF, #434A54)
+          @include backgroundcolor-color($white-color, #434A54)
           font-size: 16px
           &__select-pic
             padding-right: 10px
             @include position-size(absolute, auto, 150px, 34px, auto)
         &__sendbtn
           @include width-height-padding-margin(100px, 100%, auto, auto)
-          @include backgroundcolor-color(#38AEF0, #FFF)
+          @include backgroundcolor-color(#38AEF0, $white-color)
