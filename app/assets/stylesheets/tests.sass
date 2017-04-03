@@ -1,3 +1,20 @@
+@mixin width-height-padding-margin($width: 0, $height: 0, $padding: 0, $margin: 0)
+  width: $width
+  height: $height
+  padding: $padding
+  margin: $margin
+
+@mixin position-size($position: none, $top: 0, $right: 0, $bottom: 0, $left: 0)
+  position: $position
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+
+@mixin backgroundcolor-color($background-color: #FFFFFF, $color: #FFFFFF)
+  background-color: $background-color
+  color: $color
+
 .notice
   width: 100%
   height: 30px
