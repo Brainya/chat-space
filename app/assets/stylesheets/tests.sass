@@ -11,13 +11,13 @@
   bottom: $bottom
   left: $left
 
-@mixin backgroundcolor-color($background-color: #FFFFFF, $color: #FFFFFF)
+@mixin backgroundcolor-color($background-color: #FFF, $color: #FFF)
   background-color: $background-color
   color: $color
 
 .notice
   @include width-height-padding-margin(100%, 30px, auto, auto)
-  @include backgroundcolor-color(#38AEF0, #FFFFFF)
+  @include backgroundcolor-color(#38AEF0, #FFF)
   @include position-size(fixed, auto, auto, auto, auto)
   text-align: center
   line-height: 30px
@@ -28,11 +28,11 @@
   position: relative
   &__left
     @include width-height-padding-margin(300px, 100%, 0 20px, auto)
-    @include backgroundcolor-color(#2F3E51, #FFFFFF)
+    @include backgroundcolor-color(#2F3E51, #FFF)
     @include position-size(absolute, 30px, auto, auto, auto)
     &__user
       @include width-height-padding-margin(auto, 110px, 0 20px, 0 -20px)
-      @include backgroundcolor-color(#253141, #FFFFFF)
+      @include backgroundcolor-color(#253141, #FFF)
       line-height: 120px
       &__name
         font-size: 16px
@@ -47,7 +47,7 @@
           &__new
           &__settings
     &__message-list
-      color: #FFFFFF
+      color: #FFF
       padding-top: 20px
       &__item
         padding-bottom: 40px
@@ -62,24 +62,24 @@
     min-width: 900px
     &__roominfo
       @include width-height-padding-margin(auto, 75px, 35px 40px 0 40px, 0 -40px)
-      border-bottom: 1px solid #EEEEEE
+      border-bottom: 1px solid #EEE
       &__name
         font-size: 20px
-        color: #333333
+        color: #333
         padding-bottom: 15px
       &__members
         font-size: 12px
-        color: #999999
+        color: #999
       &__editbtn
         @include width-height-padding-margin(30px, 40px, 0 20px, auto)
-        @include backgroundcolor-color(#FFFFFF, #38AEF0)
+        @include backgroundcolor-color(#FFF, #38AEF0)
         border: 1px solid #38AEF0
         text-align: center
         line-height: 40px
         @include position-size(absolute, 28px, 40px, auto, auto)
     &__message-list
       @include width-height-padding-margin(auto, auto, 46px 40px 0 40px, 0 -20px)
-      background-color: #FFFFFF
+      background-color: #FFF
       &__item
         padding-bottom: 40px
         &__header
@@ -91,25 +91,25 @@
             padding-right: 10px
           &__date
             font-size: 12px
-            color: #999999
+            color: #999
         &__body
           &__text
             font-size: 14px
     &__footer
       @include width-height-padding-margin(calc(100% - 80px), auto, 20px 40px, 0 -40px)
       @include position-size(absolute, auto, auto, 0, auto)
-      background-color: #AAAAAA
+      background-color: #AAA
       &__form
         width: 100%
         height: 50px
         display: inline-flex
         &__textarea
           @include width-height-padding-margin(100%, 100%, 0 0 0 10px, 0 15px 0 0)
-          @include backgroundcolor-color(#FFFFFF, #434A54)
+          @include backgroundcolor-color(#FFF, #434A54)
           font-size: 16px
           &__select-pic
             padding-right: 10px
             @include position-size(absolute, auto, 150px, 34px, auto)
         &__sendbtn
           @include width-height-padding-margin(100px, 100%, auto, auto)
-          @include backgroundcolor-color(#38AEF0, #FFFFFF)
+          @include backgroundcolor-color(#38AEF0, #FFF)
