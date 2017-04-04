@@ -11,9 +11,11 @@
         %li.contents__left__user__control-list__item
           .contents__left__user__control-list__item__new{class: "fa fa-pencil-square-o fa-lg"}
         %li.contents__left__user__control-list__item
-          %a.contents__left__user__control-list__item__settings{class: "fa fa-cog fa-lg", href: "/users/edit"}
+          .contents__left__user__control-list__item__settings
+            = link_to "", "/users/edit", class: "fa fa-cog fa-lg"
         %li.contents__left__user__control-list__item
-          %a.contents__left__user__control-list__item__sign-out{class: "fa fa-sign-out fa-lg", href: "/users/sign_out"}
+          .contents__left__user__control-list__item__sign-out
+            = link_to "", "/users/sign_out", class: "fa fa-sign-out fa-lg"
     %ul.contents__left__message-list
       %li.contents__left__message-list__item
         .contents__left__message-list__item__roomname
