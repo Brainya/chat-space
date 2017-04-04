@@ -23,7 +23,7 @@ $white-color: #FFF
   &__left
     @include width-height-padding-margin(300px, 100%, 0 20px, auto)
     @include backgroundcolor-color(#2F3E51, $white-color)
-    @include position-size(absolute, 30px, auto, auto, auto)
+    @include position-size(absolute, auto, auto, auto, auto)
     &__user
       @include width-height-padding-margin(auto, 110px, 0 20px, 0 -20px)
       @include backgroundcolor-color(#253141, $white-color)
@@ -55,7 +55,7 @@ $white-color: #FFF
           font-size: 11px
   &__right
     @include width-height-padding-margin(calc(100vw - 420px), 100vh, 0 40px, auto)
-    @include position-size(absolute, 30px, auto, auto, 340px)
+    @include position-size(absolute, auto, auto, auto, 340px)
     min-width: 900px
     &__roominfo
       @include width-height-padding-margin(auto, 75px, 35px 40px 0 40px, 0 -40px)
