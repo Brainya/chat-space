@@ -46,11 +46,17 @@ $white-color: #FFF
           float: left
           padding: 0 3px
           list-style-type: none
-          a
-            color: $white-color
-            text-decoration: none
           &__new
           &__settings
+            position: relative
+            a
+              color: $white-color
+              @include position-size(absolute, 0, 0, 0, 0)
+          &__sign-out
+            position: relative
+            a
+              color: $white-color
+              @include position-size(absolute, 0, 0, 0, 0)
     &__message-list
       color: $white-color
       padding-top: 20px
