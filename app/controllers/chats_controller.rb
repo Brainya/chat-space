@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+  before_action :move_to_index
+
   def index
   end
 
