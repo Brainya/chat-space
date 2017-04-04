@@ -9,9 +9,13 @@
         takashi
       %ul.contents__left__user__control-list
         %li.contents__left__user__control-list__item
-          .contents__left__user__control-list__item__new{:class => "fa fa-pencil-square-o fa-lg"}
+          .contents__left__user__control-list__item__new.fa.fa-pencil-square-o.fa-lg
         %li.contents__left__user__control-list__item
-          .contents__left__user__control-list__item__settings{:class => "fa fa-cog fa-lg"}
+          .contents__left__user__control-list__item__settings.fa.fa-cog.fa-lg
+            = link_to "", edit_user_registration_path
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__sign-out.fa.fa-sign-out.fa-lg
+            = link_to "", destroy_user_session_path
     %ul.contents__left__message-list
       %li.contents__left__message-list__item
         .contents__left__message-list__item__roomname
@@ -52,6 +56,6 @@
             hello world
     .contents__right__footer
       .contents__right__footer__form
-        %input.contents__right__footer__form__textarea{:name => "text", :size => "90", :placeholder => "type a message"}
-          %i.contents__right__footer__form__textarea__select-pic{:class => "fa fa-picture-o fa-lg"}
-        %input.contents__right__footer__form__sendbtn{:type => "submit", :value => "Send"}
+        %input.contents__right__footer__form__textarea{name: "text", size: "90", placeholder: "type a message"}
+          %i.contents__right__footer__form__textarea__select-pic.fa.fa-picture-o.fa-lg
+        %input.contents__right__footer__form__sendbtn{type: "submit", value: "Send"}
