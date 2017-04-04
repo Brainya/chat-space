@@ -12,8 +12,10 @@
           .contents__left__user__control-list__item__new.fa.fa-pencil-square-o.fa-lg
         %li.contents__left__user__control-list__item
           .contents__left__user__control-list__item__settings.fa.fa-cog.fa-lg
+            = link_to "", edit_user_registration_path
         %li.contents__left__user__control-list__item
           .contents__left__user__control-list__item__sign-out.fa.fa-sign-out.fa-lg
+            = link_to "", destroy_user_session_path
     %ul.contents__left__message-list
       %li.contents__left__message-list__item
         .contents__left__message-list__item__roomname
