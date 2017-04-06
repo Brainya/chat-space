@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   def create
     groups = Group.all
     name = create_params[:name].strip
-    user_ids = create_params[:user_ids].drop 1 # remove a empty element
+    user_ids = create_params[:user_ids].drop(1) # remove a empty element
 
     if name.empty?
       redirect_to new_group_path, alert: "グループ名が入力されていません。"
@@ -37,6 +37,6 @@ class GroupsController < ApplicationController
 
   private
   def create_params
-    params.require(:group).permit :name, :user_ids => []
+    params.require(:group).permit(:name, :user_ids => [])
   end
 end
