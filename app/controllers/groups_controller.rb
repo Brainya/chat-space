@@ -10,6 +10,14 @@ class GroupsController < ApplicationController
     group.name = params[:chat_group][:name]
     group.save
 
+    params[:chat_group][:user_ids].each do |id|
+      next if id.empty?
+      
+      user = User.find(id)
+      user.group_id = group.id
+      user.save
+    end
+
     redirect_to root_path
   end
 end
