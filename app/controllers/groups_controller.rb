@@ -6,6 +6,21 @@ class GroupsController < ApplicationController
   end
 
   def create
+    groups = Group.all
+    name = create_params[:name].strip
+    user_ids = create_params[:user_ids].drop 1 # remove a empty element
+
+    if name.empty?
+      redirect_to new_group_path, alert: "グループ名が入力されていません。"
+      return
+    elsif groups.exists?(name: name)
+      redirect_to new_group_path, alert: "既に同じ名前のグループがあります。"
+      return
+    elsif user_ids.length <= 0
+      redirect_to new_group_path, alert: "チャットメンバーが選択されていません。"
+      return
+    end
+
     group = Group.new
     group.name = name
     group.save
