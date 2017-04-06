@@ -13,7 +13,7 @@
         %label.chat-group-form__label{:for => "chat_group_member"} チャットメンバー
       .chat-group-form__field--right
         = collection_check_boxes(:chat_group, :user_ids, @users, :id, :name) do |b|
-          .checkbox
+          .chat-group-form__field--right__checkbox
             = b.label {b.check_box + b.text}
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
