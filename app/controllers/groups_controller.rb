@@ -36,6 +36,6 @@ class GroupsController < ApplicationController
 
   private
   def create_params
-    params[:chat_group].permit :name, :user_ids => []
+    params.require(:group).permit :name, :user_ids => []
   end
 end
