@@ -7,17 +7,20 @@ class GroupsController < ApplicationController
 
   def create
     group = Group.new
-    group.name = params[:chat_group][:name]
+    group.name = name
     group.save
 
-    params[:chat_group][:user_ids].each do |id|
-      next if id.empty?
-      
-      user = User.find(id)
+    user_ids.each do |id|
+      user = User.find id
       user.group_id = group.id
       user.save
     end
 
     redirect_to root_path
+  end
+
+  private
+  def create_params
+    params[:chat_group].permit :name, :user_ids => []
   end
 end
