@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :group
   validates :email, presence: true, uniqueness: true
+  has_many :user_groups
+  has_many :group, through: :user_groups
 end
