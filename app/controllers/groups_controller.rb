@@ -18,28 +18,24 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = Group.find(params[:id])
-    group.name = create_params[:name]
-
-    unless group.save || user_ids_check_boxes_validation
-      redirect_to edit_group_path, id: group.id, alert: group.errors.full_messages[0]
-      return
-    end
-
+    @group.attributes = {name: create_params[:name]}
     user_ids = create_params[:user_ids].drop(1)
 
-    unless user_ids_check_boxes_validation(group, user_ids)
-      redirect_to edit_group_path, id: group.id, alert: group.errors.full_messages[0]
+    if !@group.save
+      render :edit, inline: @group.errors.full_messages[0]
+      return
+    elsif user_ids.length < 1
+      render :edit, inline: "ユーザーを選択してください"
       return
     end
 
     user_ids.each do |id|
       user = User.find(id)
-      UserGroup.where(user_id: user.id, group_id: group.id).first_or_create
+      UserGroup.where(user_id: user.id, group_id: @group.id).first_or_create
     end
 
-    UserGroup.where(group_id: group.id).where.not(user_id: user_ids).destroy_all
-    redirect_to action: :show, id: group.id
+    UserGroup.where(group_id: @group.id).where.not(user_id: user_ids).destroy_all
+    redirect_to action: :show, id: @group.id
   end
 
   def create
