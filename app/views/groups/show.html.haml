@@ -1,0 +1,54 @@
+.contents
+  .contents__left
+    .contents__left__user
+      .contents__left__user__name
+        = current_user.name
+      %ul.contents__left__user__control-list
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__new.fa.fa-pencil-square-o.fa-lg
+            = link_to "", new_group_path
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__settings.fa.fa-cog.fa-lg
+            = link_to "", edit_user_registration_path
+        %li.contents__left__user__control-list__item
+          .contents__left__user__control-list__item__sign-out.fa.fa-sign-out.fa-lg
+            = link_to "", destroy_user_session_path
+    %ul.contents__left__message-list
+      - @groups.each do |g|
+        %li.contents__left__message-list__item
+          .contents__left__message-list__item__roomname
+            = link_to g.name, group_path(id: g.id)
+            .contents__left__message-list__item__recentmsg
+              = g.name
+  .contents__right
+    .contents__right__roominfo
+      .contents__right__roominfo__name
+        = @group.name
+      .contents__right__roominfo__members
+        = @members_string
+      .contents__right__roominfo__editbtn
+        = link_to "Edit", edit_group_path, id: @group.id
+    %ul.contents__right__message-list
+      %li.contents__right__message-list__item
+        .contents__right__message-list__item__header
+          %span.contents__right__message-list__item__header__username
+            tarou
+          %span.contents__right__message-list__item__header__date
+            2017/01/01 00:00:00
+        .contents__right__message-list__item__body
+          %p.contents__right__message-list__item__body__text
+            good bye world
+      %li.contents__right__message-list__item
+        .contents__right__message-list__item__header
+          %span.contents__right__message-list__item__header__username
+            takashi
+          %span.contents__right__message-list__item__header__date
+            2017/01/01 00:00:01
+        .contents__right__message-list__item__body
+          %p.contents__right__message-list__item__body__text
+            hello world
+    .contents__right__footer
+      .contents__right__footer__form
+        %input.contents__right__footer__form__textarea{name: "text", size: "90", placeholder: "type a message"}
+          %i.contents__right__footer__form__textarea__select-pic.fa.fa-picture-o.fa-lg
+        %input.contents__right__footer__form__sendbtn{type: "submit", value: "Send"}
