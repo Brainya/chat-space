@@ -14,16 +14,12 @@
           .contents__left__user__control-list__item__sign-out.fa.fa-sign-out.fa-lg
             = link_to "", destroy_user_session_path
     %ul.contents__left__message-list
-      %li.contents__left__message-list__item
-        .contents__left__message-list__item__roomname
-          Sampleグループ
-        .contents__left__message-list__item__recentmsg
-          hello world
-      %li.contents__left__message-list__item
-        .contents__left__message-list__item__roomname
-          Sample2グループ
-        .contents__left__message-list__item__recentmsg
-          good bye world
+      - @groups.each do |g|
+        %li.contents__left__message-list__item
+          .contents__left__message-list__item__roomname
+            = link_to g.name, group_path(id: g.id)
+            .contents__left__message-list__item__recentmsg
+              = g.name
   .contents__right
     .contents__right__roominfo
       .contents__right__roominfo__name
