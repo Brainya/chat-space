@@ -42,12 +42,11 @@ class GroupsController < ApplicationController
     group = Group.new(name: create_params[:name])
     user_ids = create_params[:user_ids].drop(1)
 
-    unless user_ids_check_boxes_validation(group, user_ids)
-      redirect_to new_group_path, alert: group.errors.full_messages[0]
+    if !group.save
+      render :new, inline: group.errors.full_messages[0]
       return
-    end
-    unless group.save
-      redirect_to new_group_path, alert: group.errors.full_messages[0]
+    elsif user_ids.length < 1
+      render :new, inline: "ユーザーを選択してください"
       return
     end
 
