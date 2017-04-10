@@ -1,6 +1,4 @@
 class GroupsController < ApplicationController
-  protect_from_forgery except: :create
-
   def new
     @group = Group.new
     @users = User.all
