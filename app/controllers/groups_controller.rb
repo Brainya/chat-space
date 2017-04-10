@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :set_group, except: [:new, :create]
+
   def new
     @group = Group.new
     @users = User.all
@@ -6,14 +8,12 @@ class GroupsController < ApplicationController
 
   def show
     @groups = Group.all
-    @group = @groups.find(params[:id])
     user_ids = UserGroup.where(group_id: params[:id]).pluck(:user_id)
     @users = User.find(user_ids)
     @members_string = "Members: #{@users.pluck(:name).join(", ")}"
   end
 
   def edit
-    @group = Group.find(params[:id])
     @users = User.all
   end
 
@@ -64,8 +64,8 @@ class GroupsController < ApplicationController
   end
 
   private
-  def create_params
-    params.require(:group).permit(:name, user_ids: [])
+  def set_group
+    @group = Group.find(params[:id])
   end
 
   def user_ids_check_boxes_validation(group, user_ids)
@@ -75,5 +75,7 @@ class GroupsController < ApplicationController
     end
 
     return true
+  def create_params
+    params.require(:group).permit(:name, user_ids: [])
   end
 end
