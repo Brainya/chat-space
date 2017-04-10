@@ -8,6 +8,13 @@ class GroupsController < ApplicationController
     groups = Group.all
     name = create_params[:name].strip
     user_ids = create_params[:user_ids].drop(1) # remove a empty element
+  def show
+    @groups = Group.all
+    @group = @groups.find(params[:id])
+    user_ids = UserGroup.where(group_id: params[:id]).pluck(:user_id)
+    @users = User.find(user_ids)
+    @members_string = "Members: #{@users.pluck(:name).join(", ")}"
+  end
 
     if name.empty?
       redirect_to new_group_path, alert: "グループ名が入力されていません。"
