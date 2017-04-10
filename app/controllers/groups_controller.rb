@@ -17,6 +17,10 @@ class GroupsController < ApplicationController
       return
     elsif groups.exists?(name: name)
       redirect_to new_group_path, alert: "既に同じ名前のグループがあります。"
+  def edit
+    @group = Group.find(params[:id])
+    @users = User.all
+  end
       return
     elsif user_ids.length <= 0
       redirect_to new_group_path, alert: "チャットメンバーが選択されていません。"
