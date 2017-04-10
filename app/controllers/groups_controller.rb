@@ -4,10 +4,6 @@ class GroupsController < ApplicationController
     @users = User.all
   end
 
-  def create
-    groups = Group.all
-    name = create_params[:name].strip
-    user_ids = create_params[:user_ids].drop(1) # remove a empty element
   def show
     @groups = Group.all
     @group = @groups.find(params[:id])
@@ -30,14 +26,25 @@ class GroupsController < ApplicationController
     group = Group.new
     group.name = name
     group.save
+  def create
+    group = Group.new(name: create_params[:name])
+    user_ids = create_params[:user_ids].drop(1)
 
-    user_ids.each do |id|
-      user = User.find id
-      user.group_id = group.id
-      user.save
+    unless user_ids_check_boxes_validation(group, user_ids)
+      redirect_to new_group_path, alert: group.errors.full_messages[0]
+      return
+    end
+    unless group.save
+      redirect_to new_group_path, alert: group.errors.full_messages[0]
+      return
     end
 
-    redirect_to root_path
+    user_ids.each do |id|
+      user = User.find(id)
+      UserGroup.create(user_id: user.id, group_id: group.id)
+    end
+
+    redirect_to action: :show, id: group.id
   end
 
   private
