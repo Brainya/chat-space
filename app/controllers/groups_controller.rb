@@ -52,5 +52,13 @@ class GroupsController < ApplicationController
     params.require(:group).permit(:name, :user_ids => [])
     params.require(:group).permit(:name, user_ids: [])
   end
+
+  def user_ids_check_boxes_validation(group, user_ids)
+    unless user_ids.length > 0
+      group.errors.add("メンバー", "を選択してください")
+      return false
+    end
+
+    return true
   end
 end
