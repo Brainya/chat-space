@@ -16,42 +16,19 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group.attributes = {name: create_params[:name]}
-    user_ids = create_params[:user_ids].drop(1)
+    group = Group.new(create_params)
 
-    if user_ids.length < 1
-      render :edit, inline: "メンバーが選択されていません"
-      return
-    end
-
-    if @group.save
-      user_ids.each do |id|
-        user = User.find(id)
-        UserGroup.where(user_id: user.id, group_id: @group.id).first_or_create
-      end
-
-      UserGroup.where(group_id: @group.id).where.not(user_id: user_ids).destroy_all
-      redirect_to action: :show, id: @group.id
+    if group.save
+      redirect_to action: :show, id: group.id
     else
-      render :edit, inline: @group.errors.full_messages[0]
+      render :edit, inline: group.errors.full_messages[0]
     end
   end
 
   def create
-    group = Group.new(name: create_params[:name])
-    user_ids = create_params[:user_ids].drop(1)
-
-    if user_ids.length < 1
-      render :new, inline: "メンバーが選択されていません"
-      return
-    end
+    group = Group.new(create_params)
 
     if group.save
-      user_ids.each do |id|
-        user = User.find(id)
-        UserGroup.create(user_id: user.id, group_id: group.id)
-      end
-
       redirect_to action: :show, id: group.id
     else
       render :new, inline: group.errors.full_messages[0]
@@ -59,6 +36,7 @@ class GroupsController < ApplicationController
   end
 
   private
+
   def set_group
     @group = Group.find(params[:id])
   end
