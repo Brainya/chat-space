@@ -1,5 +1,5 @@
 .chat-group-form
   %h1
     チャットグループ編集
-  = form_for @group, url: "/groups/#{@group.id}", method: :patch, id: "new_chat_group", class: "new_chat_group" do |f|
+  = form_for @group, method: :patch, id: "new_chat_group", class: "new_chat_group" do |f|
     = render "form", group: @group, f: f
