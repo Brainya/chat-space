@@ -8,9 +8,7 @@ class GroupsController < ApplicationController
 
   def show
     @groups = Group.all
-    user_ids = UserGroup.where(group_id: params[:id]).pluck(:user_id)
-    @users = User.find(user_ids)
-    @members_string = "Members: #{@users.pluck(:name).join(", ")}"
+    @users = @groups.find(params[:id]).users
   end
 
   def edit
