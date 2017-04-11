@@ -25,7 +25,7 @@
       .contents__right__roominfo__name
         = @group.name
       .contents__right__roominfo__members
-        = @members_string
+        = "Members: #{@users.pluck(:name).join(", ")}"
       .contents__right__roominfo__editbtn
         = link_to "Edit", edit_group_path, id: @group.id
     %ul.contents__right__message-list
