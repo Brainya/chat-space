@@ -17,7 +17,7 @@
       - @groups.each do |g|
         %li.contents__left__message-list__item
           .contents__left__message-list__item__roomname
-            = link_to g.name, group_path(id: g.id)
+            = link_to g.name, group_path(g)
             .contents__left__message-list__item__recentmsg
               = g.name
   .contents__right
