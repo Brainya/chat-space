@@ -19,93 +19,100 @@ $white-color: #FFF
 
 .contents
   height: 100vh
-  position: relative
-  &__left
+  &--left
     @include width-height-padding-margin(300px, 100%, 0 20px, auto)
     @include backgroundcolor-color(#2F3E51, $white-color)
     @include position-size(absolute, auto, auto, auto, auto)
-    &__user
+    overflow: scroll
+    .users-content
       @include width-height-padding-margin(auto, 110px, 0 20px, 0 -20px)
       @include backgroundcolor-color(#253141, $white-color)
       line-height: 120px
-      &__name
+      &--name
         font-size: 16px
         font-weight: bold
         float: left
-      &__control-list
-        float: right
-        &__item
-          float: left
-          padding: 0 3px
-          list-style-type: none
-          &__new, &__settings, &__sign-out
-            position: relative
-            a
-              @include position-size(absolute, 0, 0, 0, 0)
-    &__message-list
-      color: $white-color
-      padding-top: 20px
-      &__item
-        padding-bottom: 40px
-        &__roomname
-          font-size: 15px
-          padding-bottom: 5px
-        &__recentmsg
-          font-size: 11px
-  &__right
+  &--right
     @include width-height-padding-margin(calc(100vw - 420px), 100vh, 0 40px, auto)
     @include position-size(absolute, auto, auto, auto, 340px)
     min-width: 900px
-    &__roominfo
-      @include width-height-padding-margin(auto, 75px, 35px 40px 0 40px, 0 -40px)
-      border-bottom: 1px solid #EEE
-      &__name
-        font-size: 20px
-        color: #333
-        padding-bottom: 15px
-      &__members
+
+.users-control-list
+  float: right
+  li
+    float: left
+    padding: 0 3px
+    list-style-type: none
+    a
+      color: $white-color
+.group-list
+  padding-top: 20px
+  a
+    color: $white-color
+    text-decoration: none
+  &__item
+    padding-bottom: 40px
+    &--name
+      font-size: 15px
+      padding-bottom: 5px
+    &--recent-message
+      font-size: 11px
+
+.group-info
+  @include width-height-padding-margin(auto, 75px, 35px 40px 0 40px, 0 -40px)
+  border-bottom: 1px solid #EEE
+  &__name
+    font-size: 20px
+    color: #333
+    padding-bottom: 15px
+  &__members
+    font-size: 12px
+    color: #999
+  &__edit-btn
+    @include width-height-padding-margin(30px, 40px, 0 20px, auto)
+    @include backgroundcolor-color($white-color, #38AEF0)
+    border: 1px solid #38AEF0
+    text-align: center
+    line-height: 40px
+    @include position-size(absolute, 28px, 40px, auto, auto)
+    a
+      color: #38AEF0
+      text-decoration: none
+
+.message-list
+  @include width-height-padding-margin(auto, auto, 46px 40px 0 40px, 0 -20px)
+  background-color: $white-color
+  &__item
+    padding-bottom: 40px
+    &--header
+      padding-bottom: 10px
+      color: #434A54
+      .username
+        font-size: 16px
+        font-weight: bold
+        padding-right: 10px
+      .date
         font-size: 12px
         color: #999
-      &__editbtn
-        @include width-height-padding-margin(30px, 40px, 0 20px, auto)
-        @include backgroundcolor-color($white-color, #38AEF0)
-        border: 1px solid #38AEF0
-        text-align: center
-        line-height: 40px
-        @include position-size(absolute, 28px, 40px, auto, auto)
-    &__message-list
-      @include width-height-padding-margin(auto, auto, 46px 40px 0 40px, 0 -20px)
-      background-color: $white-color
-      &__item
-        padding-bottom: 40px
-        &__header
-          padding-bottom: 10px
-          color: #434A54
-          &__username
-            font-size: 16px
-            font-weight: bold
-            padding-right: 10px
-          &__date
-            font-size: 12px
-            color: #999
-        &__body
-          &__text
-            font-size: 14px
-    &__footer
-      @include width-height-padding-margin(calc(100% - 80px), auto, 20px 40px, 0 -40px)
-      @include position-size(absolute, auto, auto, 0, auto)
-      background-color: #AAA
-      &__form
-        width: 100%
-        height: 50px
-        display: inline-flex
-        &__textarea
-          @include width-height-padding-margin(100%, 100%, 0 0 0 10px, 0 15px 0 0)
-          @include backgroundcolor-color($white-color, #434A54)
-          font-size: 16px
-          &__select-pic
-            padding-right: 10px
-            @include position-size(absolute, auto, 150px, 34px, auto)
-        &__sendbtn
-          @include width-height-padding-margin(100px, 100%, auto, auto)
-          @include backgroundcolor-color(#38AEF0, $white-color)
+    &--body
+      .text
+        font-size: 14px
+
+.message-input
+  @include width-height-padding-margin(calc(100% - 80px), auto, 20px 40px, 0 -40px)
+  @include position-size(absolute, auto, auto, 0, auto)
+  background-color: #AAA
+  &__form
+    width: 100%
+    height: 50px
+    display: inline-flex
+    &--textarea
+      @include width-height-padding-margin(100%, 100%, 0 0 0 10px, 0 15px 0 0)
+      @include backgroundcolor-color($white-color, #434A54)
+      font-size: 16px
+    &--select-pic
+      padding-right: 10px
+      @include position-size(absolute, auto, 150px, 34px, auto)
+    &--send-btn
+      @include width-height-padding-margin(100px, 100%, auto, auto)
+      @include backgroundcolor-color(#38AEF0, $white-color)
