@@ -6,9 +6,14 @@ class GroupsController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @groups = Group.all
-    @users = @groups.find(params[:id]).users
+  def create
+    group = Group.new(create_params)
+
+    if group.save
+      redirect_to action: :show, id: group.id
+    else
+      render :new, inline: group.errors.full_messages[0]
+    end
   end
 
   def edit
@@ -25,14 +30,9 @@ class GroupsController < ApplicationController
     end
   end
 
-  def create
-    group = Group.new(create_params)
-
-    if group.save
-      redirect_to action: :show, id: group.id
-    else
-      render :new, inline: group.errors.full_messages[0]
-    end
+  def show
+    @groups = Group.all
+    @users = @groups.find(params[:id]).users
   end
 
   private
