@@ -1,19 +1,16 @@
-= form_for @group, url: "/groups", method: :post, id: "new_chat_group", class: "new_chat_group" do |f|
-  = f.hidden_field :utf8, value: "✓"
-  = f.hidden_field :authenticity_token, value: "AxFKlYEhD6eqX1PiZoTYQDANtKvgcFSXZQXHt5hyTl55/U/CHC5rtPavrcu2za65riz4tekZEy56vP6kEb2wYA=="
-  .chat-group-form__field.clearfix
-    .chat-group-form__field--left
-      = f.label :chat_group_name, "グループ名", class: "chat-group-form__label"
-    .chat-group-form__field--right
-      = f.text_field :name, placeholder: "グループ名を入力してください", id: "chat_group_name", class: "chat-group-form__input"
-  .chat-group-form__field.clearfix
-    .chat-group-form__field--left
-      = f.label :chat_group_member, "チャットメンバー", class: "chat-group-form__label"
-    .chat-group-form__field--right
-      = collection_check_boxes :group, :user_ids, @users, :id, :name do |b|
-        .chat-group-form__field--right__checkbox
-          = b.label {b.check_box + b.text}
-  .chat-group-form__field.clearfix
-    .chat-group-form__field--left
-    .chat-group-form__field--right
-      = f.submit "Save", disable_with: "Save", class: "chat-group-form__action-btn"
+.chat-group-form__field.clearfix
+  .chat-group-form__field--left
+    = f.label :chat_group_name, "グループ名", class: "chat-group-form__label"
+  .chat-group-form__field--right
+    = f.text_field :name, placeholder: "グループ名を入力してください", id: "chat_group_name", class: "chat-group-form__input"
+.chat-group-form__field.clearfix
+  .chat-group-form__field--left
+    = f.label :chat_group_member, "チャットメンバー", class: "chat-group-form__label"
+  .chat-group-form__field--right
+    = f.collection_check_boxes :user_ids, @users, :id, :name, include_hidden: false do |b|
+      .chat-group-form__field--right__checkbox
+        = b.label { b.check_box + b.text }
+.chat-group-form__field.clearfix
+  .chat-group-form__field--left
+  .chat-group-form__field--right
+    = f.submit "Save", disable_with: "Save", class: "chat-group-form__action-btn"

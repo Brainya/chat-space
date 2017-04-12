@@ -1,13 +1,13 @@
 .contents
-  = render 'left_column'
+  = render 'chats/left_column'
   .contents--right
     .group-info
       .group-info__name
-        sample group
+        = @group.name
       .group-info__members
-        Members: test_man
+        = "Members: #{@users.pluck(:name).join(", ")}"
       .group-info__edit-btn
-        Edit
+        = link_to "Edit", edit_group_path, id: @group.id
     %ul.message-list
       %li.message-list__item
         .message-list__item--header

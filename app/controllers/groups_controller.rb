@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  protect_from_forgery except: :create
+  before_action :set_group, except: [:new, :create]
 
   def new
     @group = Group.new
@@ -7,36 +7,39 @@ class GroupsController < ApplicationController
   end
 
   def create
-    groups = Group.all
-    name = create_params[:name].strip
-    user_ids = create_params[:user_ids].drop 1 # remove a empty element
+    group = Group.new(create_params)
 
-    if name.empty?
-      redirect_to new_group_path, alert: "グループ名が入力されていません。"
-      return
-    elsif groups.exists?(name: name)
-      redirect_to new_group_path, alert: "既に同じ名前のグループがあります。"
-      return
-    elsif user_ids.length <= 0
-      redirect_to new_group_path, alert: "チャットメンバーが選択されていません。"
-      return
+    if group.save
+      redirect_to action: :show, id: group.id
+    else
+      render :new, inline: group.errors.full_messages[0]
     end
+  end
 
-    group = Group.new
-    group.name = name
-    group.save
+  def edit
+    @users = User.all
+  end
 
-    user_ids.each do |id|
-      user = User.find id
-      user.group_id = group.id
-      user.save
+  def update
+    if @group.update(create_params)
+      redirect_to action: :show, id: @group.id
+    else
+      render :edit, inline: @group.errors.full_messages[0]
     end
+  end
 
-    redirect_to root_path
+  def show
+    @groups = Group.all
+    @users = @groups.find(params[:id]).users
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
   def create_params
-    params.require(:group).permit :name, :user_ids => []
+    params.require(:group).permit(:name, user_ids: [])
   end
 end

@@ -1,4 +1,5 @@
 .chat-group-form
   %h1
     新規チャットグループ
-  = render "form"
+  = form_for @group, method: :post, id: "new_chat_group", class: "new_chat_group" do |f|
+    = render "form", group: @group, f: f

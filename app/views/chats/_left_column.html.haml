@@ -1,0 +1,21 @@
+.contents--left
+  .users-content
+    .users-content--name
+      = current_user.name
+    %ul.users-control-list
+      %li.users__control-list__item
+        = link_to new_group_path do
+          %i.fa.fa-pencil-square-o.fa-lg
+      %li.users-control-list__item
+        = link_to edit_user_registration_path do
+          %i.fa.fa-cog.fa-lg
+      %li.users-control-list__item
+        = link_to destroy_user_session_path do
+          %i.fa.fa-sign-out.fa-lg
+  %ul.group-list
+    - @groups.each do |g|
+      %li.group-list__item
+        .group-list__item--name
+          = link_to g.name, group_path(g)
+        .group-list__item--recent-message
+          = g.name
