@@ -1,54 +1,54 @@
 .contents
-  .contents__left
-    .contents__left__user
-      .contents__left__user__name
+  .contents--left
+    .users-content
+      .users-content--name
         = current_user.name
-      %ul.contents__left__user__control-list
-        %li.contents__left__user__control-list__item
-          .contents__left__user__control-list__item__new.fa.fa-pencil-square-o.fa-lg
-            = link_to "", new_group_path
-        %li.contents__left__user__control-list__item
-          .contents__left__user__control-list__item__settings.fa.fa-cog.fa-lg
-            = link_to "", edit_user_registration_path
-        %li.contents__left__user__control-list__item
-          .contents__left__user__control-list__item__sign-out.fa.fa-sign-out.fa-lg
-            = link_to "", destroy_user_session_path
-    %ul.contents__left__message-list
+      %ul.users-control-list
+        %li.users__control-list__item
+          = link_to new_group_path do
+            %i.fa.fa-pencil-square-o.fa-lg
+        %li.users-control-list__item
+          = link_to edit_user_registration_path do
+            %i.fa.fa-cog.fa-lg
+        %li.users-control-list__item
+          = link_to destroy_user_session_path do
+            %i.fa.fa-sign-out.fa-lg
+    %ul.group-list
       - @groups.each do |g|
-        %li.contents__left__message-list__item
-          .contents__left__message-list__item__roomname
-            = link_to g.name, group_path(id: g.id)
-            .contents__left__message-list__item__recentmsg
-              = g.name
-  .contents__right
-    .contents__right__roominfo
-      .contents__right__roominfo__name
-        Sampleグループ
-      .contents__right__roominfo__members
-        Members: takashi, tarou
-      .contents__right__roominfo__editbtn
+        %li.group-list__item
+          .group-list__item--name
+            = link_to g.name, group_path(g)
+          .group-list__item--recent-message
+            = g.name
+  .contents--right
+    .group-info
+      .group-info__name
+        sample group
+      .group-info__members
+        Members: test_man
+      .group-info__edit-btn
         Edit
-    %ul.contents__right__message-list
-      %li.contents__right__message-list__item
-        .contents__right__message-list__item__header
-          %span.contents__right__message-list__item__header__username
+    %ul.message-list
+      %li.message-list__item
+        .message-list__item--header
+          %span.username
             tarou
-          %span.contents__right__message-list__item__header__date
+          %span.date
             2017/01/01 00:00:00
-        .contents__right__message-list__item__body
-          %p.contents__right__message-list__item__body__text
+        .message-list__item--body
+          %p.text
             good bye world
-      %li.contents__right__message-list__item
-        .contents__right__message-list__item__header
-          %span.contents__right__message-list__item__header__username
+      %li.message-list__item
+        .message-list__item--header
+          %span.username
             takashi
-          %span.contents__right__message-list__item__header__date
-            2017/01/01 00:00:01
-        .contents__right__message-list__item__body
-          %p.contents__right__message-list__item__body__text
+          %span.date
+            2017/01/01 00:00:00
+        .message-list__item--body
+          %p.text
             hello world
-    .contents__right__footer
-      .contents__right__footer__form
-        %input.contents__right__footer__form__textarea{name: "text", size: "90", placeholder: "type a message"}
-          %i.contents__right__footer__form__textarea__select-pic.fa.fa-picture-o.fa-lg
-        %input.contents__right__footer__form__sendbtn{type: "submit", value: "Send"}
+    .message-input
+      .message-input__form
+        %input.message-input__form--textarea{name: "text", size: "90", placeholder: "type a message"}
+        %i.message-input__form--select-pic.fa.fa-picture-o.fa-lg
+        %input.message-input__form--send-btn{type: "submit", value: "Send"}
