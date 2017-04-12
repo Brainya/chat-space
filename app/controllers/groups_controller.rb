@@ -21,12 +21,10 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = Group.new(create_params)
-
-    if group.save
-      redirect_to action: :show, id: group.id
+    if @group.update(create_params)
+      redirect_to action: :show, id: @group.id
     else
-      render :edit, inline: group.errors.full_messages[0]
+      render :edit, inline: @group.errors.full_messages[0]
     end
   end
 
