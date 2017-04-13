@@ -16,6 +16,6 @@
     - @groups.each do |g|
       %li.group-list__item
         .group-list__item--name
-          = link_to g.name, group_path(g)
+          = link_to g.name, group_messages_path(g)
         .group-list__item--recent-message
           = g.name

@@ -1,9 +1,17 @@
 class MessagesController < ApplicationController
+  def index
+    @groups = Group.all
+    @group = @groups.find(params[:group_id])
+    @users = @group.users
+    @messages = Message.where(group_id: @group.id)
+    @message = Message.new
+  end
+
   def create
     message = Message.new(create_params)
 
     flash[:alert] = message.errors.full_messages[0] unless message.save
-    redirect_to group_path(message.group.id)
+    redirect_to group_messages_path(message.group.id)
   end
 
   private
