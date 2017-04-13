@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root 'chats#index'
 
   resources :groups do
-    resources :messages, only: :create
+    resources :messages, only: [:index, :create]
   end
 end
