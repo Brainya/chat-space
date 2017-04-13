@@ -29,6 +29,7 @@
             hello world
     .message-input
       .message-input__form
-        %input.message-input__form--textarea{name: "text", size: "90", placeholder: "type a message"}
-        %i.message-input__form--select-pic.fa.fa-picture-o.fa-lg
-        %input.message-input__form--send-btn{type: "submit", value: "Send"}
+        = form_for [@group, @message] do |f|
+          = f.text_field :message, placeholder: "type a message", class: "message-input__form--textarea", size: "90"
+          %i.message-input__form--select-pic.fa.fa-picture-o.fa-lg
+          = f.submit "Send", class: "message-input__form--send-btn"
