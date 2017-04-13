@@ -9,24 +9,16 @@
       .group-info__edit-btn
         = link_to "Edit", edit_group_path, id: @group.id
     %ul.message-list
-      %li.message-list__item
-        .message-list__item--header
-          %span.username
-            tarou
-          %span.date
-            2017/01/01 00:00:00
-        .message-list__item--body
-          %p.text
-            good bye world
-      %li.message-list__item
-        .message-list__item--header
-          %span.username
-            takashi
-          %span.date
-            2017/01/01 00:00:00
-        .message-list__item--body
-          %p.text
-            hello world
+      - @messages.each do |message|
+        %li.message-list__item
+          .message-list__item--header
+            %span.username
+              = message.user.name
+            %span.date
+              = message.created_at
+          .message-list__item--body
+            %p.text
+              = message.message
     .message-input
       = form_for [@group, @message], html: { class:"message-input__new_message" }do |f|
         = f.text_field :message, placeholder: "type a message", class: "message-input__new_message--textarea", size: "90"
