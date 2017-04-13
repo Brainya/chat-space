@@ -31,6 +31,7 @@ class GroupsController < ApplicationController
   def show
     @groups = Group.all
     @users = @groups.find(params[:id]).users
+    @message = Message.new
   end
 
   private
