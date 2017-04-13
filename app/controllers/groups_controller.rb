@@ -30,9 +30,9 @@ class GroupsController < ApplicationController
 
   def show
     @groups = Group.all
-    @users = @groups.find(params[:id]).users
+    @users = @group.users
     @message = Message.new
-    @messages = Message.where(group_id: params[:id])
+    @messages = Message.where(group_id: @group.id)
   end
 
   private
