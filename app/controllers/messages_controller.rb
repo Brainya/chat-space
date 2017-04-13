@@ -2,11 +2,8 @@ class MessagesController < ApplicationController
   def create
     message = Message.new(create_params)
 
-    if message.save
-      redirect_to group_path(params[:group_id])
-    else
-      redirect_to group_path(params[:group_id]), alert: message.errors.full_messages[0]
-    end
+    flash[:alert] = message.errors.full_messages[0] unless message.save
+    redirect_to group_path(message.group.id)
   end
 
   private
