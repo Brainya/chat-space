@@ -32,6 +32,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
     @users = @groups.find(params[:id]).users
     @message = Message.new
+    @messages = Message.where(group_id: params[:id])
   end
 
   private
