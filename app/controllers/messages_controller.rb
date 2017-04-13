@@ -1,7 +1,12 @@
 class MessagesController < ApplicationController
   def create
-    Message.create(create_params)
-    redirect_to controller: :groups, action: :show, id: params[:group_id]
+    message = Message.new(create_params)
+
+    if message.save
+      redirect_to group_path(params[:group_id])
+    else
+      redirect_to group_path(params[:group_id]), alert: message.errors.full_messages[0]
+    end
   end
 
   private
