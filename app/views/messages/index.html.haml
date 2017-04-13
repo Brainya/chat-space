@@ -7,7 +7,7 @@
       .group-info__members
         = "Members: #{@users.pluck(:name).join(", ")}"
       .group-info__edit-btn
-        = link_to "Edit", edit_group_path, id: @group.id
+        = link_to "Edit", edit_group_path(@group.id)
     %ul.message-list
       - @messages.each do |message|
         %li.message-list__item
@@ -15,7 +15,7 @@
             %span.username
               = message.user.name
             %span.date
-              = message.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[message.created_at.wday]}) %X") 
+              = message.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[message.created_at.wday]}) %X")
           .message-list__item--body
             %p.text
               = message.message
