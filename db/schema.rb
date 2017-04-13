@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20170412105327) do
     t.integer  "group_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["group_id"], name: "index_messages_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "user_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
