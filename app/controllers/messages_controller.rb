@@ -1,9 +1,7 @@
 class MessagesController < ApplicationController
   def index
     @groups = Group.all
-    @group = @groups.find(params[:group_id])
-    @users = @group.users
-    @messages = Message.where(group_id: @group.id)
+    @group = @groups.includes(:users, :messages).find(params[:group_id])
     @message = Message.new
   end
 

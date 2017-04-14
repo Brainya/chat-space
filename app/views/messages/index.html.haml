@@ -5,11 +5,11 @@
       .group-info__name
         = @group.name
       .group-info__members
-        = "Members: #{@users.pluck(:name).join(", ")}"
+        = "Members: #{@group.users.pluck(:name).join(", ")}"
       .group-info__edit-btn
         = link_to "Edit", edit_group_path(@group.id)
     %ul.message-list
-      - @messages.each do |message|
+      - @group.messages.each do |message|
         %li.message-list__item
           .message-list__item--header
             %span.username
@@ -20,7 +20,7 @@
             %p.text
               = message.message
     .message-input
-      = form_for [@group, @message], html: { class:"message-input__new_message" }do |f|
+      = form_for [@group, @message], html: { class: "message-input__new_message" } do |f|
         = f.text_field :message, placeholder: "type a message", class: "message-input__new_message--textarea", size: "90"
         %i.message-input__new_message--select-pic.fa.fa-picture-o.fa-lg
         = f.submit "Send", class: "message-input__new_message--submit-btn"
