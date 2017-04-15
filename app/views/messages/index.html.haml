@@ -5,7 +5,7 @@
       .group-info__name
         = @group.name
       .group-info__members
-        = "Members: #{@group.users.pluck(:name).join(", ")}"
+        = members_string
       .group-info__edit-btn
         = link_to "Edit", edit_group_path(@group.id)
     %ul.message-list
@@ -15,7 +15,7 @@
             %span.username
               = message.user.name
             %span.date
-              = message.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[message.created_at.wday]}) %X")
+              = japanese_datetime(message.created_at)
           .message-list__item--body
             %p.text
               = message.message
