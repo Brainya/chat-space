@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(create_params)
+    @message = current_user.messages.new(create_params)
 
     if @message.save
       flash[:notice] = 'メッセージが送信されました'
@@ -25,6 +25,6 @@ class MessagesController < ApplicationController
   end
 
   def create_params
-    params.require(:message).permit(:message).merge(user_id: current_user.id, group_id: params[:group_id])
+    params.require(:message).permit(:message, :user_id).merge(group_id: params[:group_id])
   end
 end
