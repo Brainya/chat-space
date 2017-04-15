@@ -7,13 +7,12 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(create_params)
+    @group = Group.new(create_params)
 
-    if group.save
-      redirect_to group_messages_path(group.id)
+    if @group.save
+      redirect_to group_messages_path(@group.id)
     else
-      @group = Group.new(create_params)
-      flash.now[:alert] = group.errors.full_messages[0]
+      flash.now[:alert] = @group.errors.full_messages[0]
       render :new
     end
   end

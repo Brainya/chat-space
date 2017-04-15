@@ -6,13 +6,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new(create_params)
+    @message = Message.new(create_params)
 
-    if message.save
-      redirect_to group_messages_path(message.group.id)
+    if @message.save
+      redirect_to group_messages_path(@message.group.id)
     else
-      @message = Message.new(create_params)
-      flash.now[:alert] = message.errors.full_messages[0]
+      flash.now[:alert] = @message.errors.full_messages[0]
       render :index
     end
   end
