@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
   before_action :set_group, except: [:new, :create]
+  before_action :set_users
 
   def new
     @group = Group.new
-    @users = User.all
   end
 
   def create
@@ -17,7 +17,6 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @users = User.all
   end
 
   def update
@@ -32,6 +31,10 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def set_users
+    @users = User.all
   end
 
   def create_params
