@@ -1,4 +1,4 @@
-module ChatsHelpers
+module ChatsHelper
   def get_group_members(group)
     "Members: #{group.users.pluck(:name).join(", ")}"
   end
