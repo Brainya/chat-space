@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   private
 
   def set_groups_group
-    @groups = Group.includes(:users, :messages).all
+    @groups = Group.includes(:users, :messages)
     @group = @groups.find(params[:group_id])
   end
 
