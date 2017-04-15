@@ -5,7 +5,7 @@
       .group-info__name
         = @group.name
       .group-info__members
-        = get_members_string_by_group(@group)
+        = get_group_members(@group)
       .group-info__edit-btn
         = link_to "Edit", edit_group_path(@group.id)
     %ul.message-list
@@ -15,7 +15,7 @@
             %span.username
               = message.user.name
             %span.date
-              = get_japanese_datetime_by_datetime(message.created_at)
+              = get_datetime_jp(message.created_at)
           .message-list__item--body
             %p.text
               = message.message

@@ -18,4 +18,4 @@
         .group-list__item--name
           = link_to group.name, group_messages_path(group.id)
         .group-list__item--recent-message
-          = get_recent_message_by_group(group)
+          = get_recent_message(group)
