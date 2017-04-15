@@ -12,7 +12,9 @@ class GroupsController < ApplicationController
     if group.save
       redirect_to group_messages_path(group.id)
     else
-      render :new, inline: group.errors.full_messages[0]
+      @group = Group.new(create_params)
+      flash.now[:alert] = group.errors.full_messages[0]
+      render :new
     end
   end
 
@@ -23,7 +25,8 @@ class GroupsController < ApplicationController
     if @group.update(create_params)
       redirect_to group_messages_path(@group.id)
     else
-      render :edit, inline: @group.errors.full_messages[0]
+      flash.now[:alert] = @group.errors.full_messages[0]
+      render :edit
     end
   end
 
