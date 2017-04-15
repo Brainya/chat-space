@@ -15,7 +15,7 @@
             %span.username
               = message.user.name
             %span.date
-              = japanese_datetime(message.created_at)
+              = get_japanese_datetime_by_datetime(message.created_at)
           .message-list__item--body
             %p.text
               = message.message
