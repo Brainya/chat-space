@@ -5,7 +5,7 @@
       .group-info__name
         = @group.name
       .group-info__members
-        = members_string
+        = get_members_string_by_group(@group)
       .group-info__edit-btn
         = link_to "Edit", edit_group_path(@group.id)
     %ul.message-list
