@@ -8,8 +8,13 @@ class MessagesController < ApplicationController
   def create
     message = Message.new(create_params)
 
-    flash[:alert] = message.errors.full_messages[0] unless message.save
-    redirect_to group_messages_path(message.group.id)
+    if message.save
+      redirect_to group_messages_path(message.group.id)
+    else
+      @message = Message.new(create_params)
+      flash.now[:alert] = message.errors.full_messages[0]
+      render :index
+    end
   end
 
   private
