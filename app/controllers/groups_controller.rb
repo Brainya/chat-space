@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
+      flash[:notice] = 'グループが作成されました'
       redirect_to group_messages_path(@group.id)
     else
       flash.now[:alert] = @group.errors.full_messages[0]
@@ -22,6 +23,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
+      flash[:notice] = 'グループ情報が更新されました'
       redirect_to group_messages_path(@group.id)
     else
       flash.now[:alert] = @group.errors.full_messages[0]

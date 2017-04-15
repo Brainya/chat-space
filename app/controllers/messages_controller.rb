@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     @message = Message.new(create_params)
 
     if @message.save
+      flash[:notice] = 'メッセージが送信されました'
       redirect_to group_messages_path(@message.group.id)
     else
       flash.now[:alert] = @message.errors.full_messages[0]
