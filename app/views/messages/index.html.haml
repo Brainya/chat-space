@@ -1,0 +1,17 @@
+.contents
+  = render 'chats/left_column'
+  .contents--right
+    .group-info
+      .group-info__name
+        = @group.name
+      .group-info__members
+        = get_group_members(@group)
+      .group-info__edit-btn
+        = link_to "Edit", edit_group_path(@group.id)
+    %ul.message-list
+      = render @group.messages
+    .message-input
+      = form_for [@group, @message], html: { class: "message-input__new_message" } do |f|
+        = f.text_field :message, placeholder: "type a message", class: "message-input__new_message--textarea", size: "90"
+        %i.message-input__new_message--select-pic.fa.fa-picture-o.fa-lg
+        = f.submit "Send", class: "message-input__new_message--submit-btn"

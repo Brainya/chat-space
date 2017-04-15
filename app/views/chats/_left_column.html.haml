@@ -13,9 +13,9 @@
         = link_to destroy_user_session_path do
           %i.fa.fa-sign-out.fa-lg
   %ul.group-list
-    - @groups.each do |g|
+    - @groups.each do |group|
       %li.group-list__item
         .group-list__item--name
-          = link_to g.name, group_path(g)
+          = link_to group.name, group_messages_path(group.id)
         .group-list__item--recent-message
-          = g.name
+          = get_recent_message(group)
