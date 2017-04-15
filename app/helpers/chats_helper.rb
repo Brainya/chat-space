@@ -8,6 +8,12 @@ module ChatsHelper
   end
 
   def get_recent_message(group)
-    group.messages.order(:created_at).reverse_order.pluck(:message).first
+    message = group.messages.order(:created_at).reverse_order.pluck(:message).first
+
+    if message.blank?
+      message = 'まだメッセージはありません'
+    end
+
+    return message
   end
 end
