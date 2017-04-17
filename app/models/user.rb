@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :user_groups
   has_many :group, through: :user_groups
+  has_many :messages
 end
