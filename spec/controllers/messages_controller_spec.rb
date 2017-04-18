@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe MessagesController, type: :controller do
   describe 'GET #index' do
-    let(:message) { FactoryGirl.create(:message) }
+    let(:message) { create(:message) }
     let(:params) { { group_id: message.group.id } }
 
     before do
