@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+ActiveSupport::Deprecation.silenced = true
 
 module ChatSpace
   class Application < Rails::Application
@@ -13,7 +14,7 @@ module ChatSpace
     # -- all .rb files in that directory are automatically loaded.
 
     config.i18n.default_locale = :ja
-    
+
     config.generators do |g|
       g.helper false
       g.assets false
