@@ -2,8 +2,8 @@ FactoryGirl.define do
 
   factory :message do
     message { Faker::Lorem.sentence }
-    user
-    group
+    user    { create(:user) }
+    group   { create(:group) }
   end
 
 end
