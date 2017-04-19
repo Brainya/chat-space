@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :message do
-    message "hello world"
+    message { Faker::Lorem.sentence }
     user
     group
   end
