@@ -23,7 +23,6 @@ $white-color: #FFF
     @include width-height-padding-margin(300px, 100%, 0 20px, auto)
     @include backgroundcolor-color(#2F3E51, $white-color)
     @include position-size(absolute, auto, auto, auto, auto)
-    overflow: scroll
     .users-content
       @include width-height-padding-margin(auto, 110px, 0 20px, 0 -20px)
       @include backgroundcolor-color(#253141, $white-color)
@@ -46,12 +45,17 @@ $white-color: #FFF
     a
       color: $white-color
 .group-list
-  padding-top: 20px
+  @include width-height-padding-margin(100%, calc(100vh - 140px), 0 20px 20px, 0 -20px)
+  overflow: scroll
   a
     color: $white-color
     text-decoration: none
   &__item
-    padding-bottom: 40px
+    padding: 0 20px 40px
+    margin: 0 -20px
+    transition: background-color 1s
+    &:hover
+      background-color: #405066
     &--name
       font-size: 15px
       padding-bottom: 5px
@@ -71,17 +75,18 @@ $white-color: #FFF
   &__edit-btn
     @include width-height-padding-margin(30px, 40px, 0 20px, auto)
     @include backgroundcolor-color($white-color, #38AEF0)
+    @include position-size(absolute, 28px, 40px, auto, auto)
     border: 1px solid #38AEF0
     text-align: center
     line-height: 40px
-    @include position-size(absolute, 28px, 40px, auto, auto)
     a
       color: #38AEF0
       text-decoration: none
 
 .message-list
-  @include width-height-padding-margin(auto, auto, 46px 40px 0 40px, 0 -20px)
+  @include width-height-padding-margin(auto, calc(100% - 247px), 46px 40px 0 60px, 0 -40px)
   background-color: $white-color
+  overflow: scroll
   &__item
     padding-bottom: 40px
     &--header
@@ -111,8 +116,8 @@ $white-color: #FFF
       @include backgroundcolor-color($white-color, #434A54)
       font-size: 16px
     &--select-pic
-      padding-right: 10px
       @include position-size(absolute, auto, 150px, 34px, auto)
+      padding-right: 10px
     &--submit-btn
       @include width-height-padding-margin(100px, 100%, auto, auto)
       @include backgroundcolor-color(#38AEF0, $white-color)
