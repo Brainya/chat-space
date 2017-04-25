@@ -14,8 +14,9 @@
           %i.fa.fa-sign-out.fa-lg
   %ul.group-list
     - @groups.each do |group|
-      %li.group-list__item
-        .group-list__item--name
-          = link_to group.name, group_messages_path(group.id)
-        .group-list__item--recent-message
-          = get_recent_message(group)
+      = link_to group_messages_path(group.id) do
+        %li.group-list__item
+          .group-list__item--name
+            = group.name
+          .group-list__item--recent-message
+            = get_recent_message(group)
