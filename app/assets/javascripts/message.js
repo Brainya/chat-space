@@ -15,27 +15,13 @@ $(function() {
     return html;
   }
 
-  $('.message-input__new_message').on('submit', function(e) {
-    var textField = $('.message-input__new_message--textarea');
-    var message = textField.val();
+  $('.message-input__new_message').on('ajax:success', function(event, data, status) {
+    var text_area = $('.message-input__new_message--textarea');
+    var html = buildHTML(data);
+    text_area.val('');
+    $('.message-list').append(html);
+    scrollToBottomMessageList();
+  });
 
-    $.ajax({
-      type: 'POST',
-      url: 'messages',
-      data: {
-        message: {
-          content: message
-        }
-      },
-      dataType: 'json',
-    })
-    .done(function(data) {
-      var html = buildHTML(data);
-      $('.message-list').append(html);
-      textField.val('');
-    })
-    .fail(function() {
-      textField.val(message);
-    });
   });
 });
