@@ -103,6 +103,19 @@ $white-color: #FFF
       .text
         font-size: 14px
 
+.send-message-status
+  &__success .flash_message
+    background-color: #01DF3A
+  &__failure .flash_message
+    background-color: #DF0101
+
+.flash_message
+  @include width-height-padding-margin(auto, 40px, 0 20px, 0)
+  @include position-size(absolute, 131px, 20px, auto, auto)
+  color: $white-color
+  line-height: 40px
+  text-align: center
+
 .message-input
   @include width-height-padding-margin(calc(100% - 80px), auto, 20px 40px, 0 -40px)
   @include position-size(absolute, auto, auto, 0, auto)
