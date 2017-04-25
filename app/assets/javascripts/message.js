@@ -23,5 +23,7 @@ $(function() {
     scrollToBottomMessageList();
   });
 
+  $('.message-list').ready(function() {
+    scrollToBottomMessageList();
   });
 });
