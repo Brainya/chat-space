@@ -7,9 +7,7 @@
   .chat-group-form__field--left
     = f.label :chat_group_member, "チャットメンバー", class: "chat-group-form__label"
   .chat-group-form__field--right
-    = f.collection_check_boxes :user_ids, @users, :id, :name, include_hidden: false do |b|
-      .chat-group-form__field--right__checkbox
-        = b.label { b.check_box + b.text }
+    = f.collection_select :user_ids, @users, :id, :name, { include_blank: true }, multiple: true, class: "user-list-input chat-group-form__input"
 .chat-group-form__field.clearfix
   .chat-group-form__field--left
   .chat-group-form__field--right
