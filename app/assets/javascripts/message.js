@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('ready turbolinks:load', function() {
   $.fn.flash_message = function(options) {
     options = $.extend({
       text: 'Done',
@@ -23,12 +23,13 @@ $(function() {
         });
       });
     };
-
+    
   function scrollToBottomMessageList() {
     $('.message-list').animate({
-      scrollTop: $('.message-list')[0].scrollHeight },
+      scrollTop: $('.message-list')[0].scrollHeight
+    },
       'fast'
-      );
+    );
   }
 
   function buildHTML(data) {
