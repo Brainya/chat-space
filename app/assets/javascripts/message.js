@@ -5,16 +5,14 @@ $(document).on('turbolinks:load', function() {
       time: 1000,
       how: 'before',
       class_name: ''
-    }, options);
+    },
+    options);
     
     return $(this).each(function() {
       if ($(this).parent().find('.flash_message').get(0))
       return;
         
-        var message = $('<span>', {
-          'class': 'flash_message ' + options.class_name,
-          text: options.text
-        }).hide().fadeIn('fast');
+        var message = $(`<span class="flashMessage ${options.class_name}">`).append(options.text).hide().fadeIn('fast');
         
         $(this)[options.how](message);
         
@@ -25,7 +23,7 @@ $(document).on('turbolinks:load', function() {
     };
     
   function scrollToBottomMessageList() {
-    $(`.message-list`).animate({
+    $('.message-list').animate({
       scrollTop: $('.message-list')[0].scrollHeight
     },
       'fast'
@@ -44,11 +42,11 @@ $(document).on('turbolinks:load', function() {
     return html;
   }
 
-  $(`.message-input__new_message`).on('ajax:success', function(event, data, status) {
-    var text_area = $(`.message-input__new_message--textarea`);
+  $('.message-input__new_message').on('ajax:success', function(event, data, status) {
+    var text_area = $('.message-input__new_message--textarea');
     var html = buildHTML(data);
 
-    $(`.message-list`).append(html);
+    $('.message-list').append(html);
     scrollToBottomMessageList();
     text_area.val('');
     $('.send-message-status__success').flash_message({
@@ -57,14 +55,14 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $(`.message-input__new_message`).on('ajax:error', function(event, data, status) {
     $('.send-message-status__failure').flash_message({
+  $('.message-input__new_message').on('ajax:error', function(event, data, status) {
       text: 'メッセージの送信に失敗しました',
       how: 'append'
     });
   });
 
-  $(`.message-list`).ready(function() {
+  $('.message-list').ready(function() {
     scrollToBottomMessageList();
   });
 });

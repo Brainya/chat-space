@@ -9,18 +9,18 @@ $(document).on('turbolinks:load', function() {
     return usernames;
   };
 
-  $(`#user-list-selected`).on('click', 'button', function() {
+  $('#user-list-selected').on('click', 'button', function() {
     $(this).remove();
   });
 
-  $(`#user-list-result`).on('click', 'button', function() {
+  $('#user-list-result').on('click', 'button', function() {
     var id = $(this).attr('id');
 
-    $(this).attr('id', `${id}-selected`).appendTo(`#user-list-selected`);
+    $(this).attr('id', `${id}-selected`).appendTo('#user-list-selected');
   });
 
   $('form').on('submit', function() {
-    var usernames = getUsernamesByButtons($(`#user-list-selected button`));
+    var usernames = getUsernamesByButtons($('#user-list-selected button'));
     $('<input>').attr('type', 'hidden').attr('name', 'usernames').attr('value', usernames).appendTo(this);
   });
 
@@ -43,9 +43,9 @@ $(document).on('turbolinks:load', function() {
     preInput = input;
   });
 
-  $(`#user-list-result`).on('DOMSubtreeModified propertychange', function() {
-    var resultUsernames = getUsernamesByButtons($(`#user-list-result button`));
-    var selectedUsernames = getUsernamesByButtons($(`#user-list-selected button`));
+  $('#user-list-result').on('DOMSubtreeModified propertychange', function() {
+    var resultUsernames = getUsernamesByButtons($('#user-list-result button'));
+    var selectedUsernames = getUsernamesByButtons($('#user-list-selected button'));
     
     $.each(resultUsernames, function(index, value) {
       if ($.inArray(value, selectedUsernames) != -1) {
