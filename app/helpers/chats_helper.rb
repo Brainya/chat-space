@@ -1,6 +1,6 @@
 module ChatsHelper
   def get_group_members(group)
-    "Members: #{group.users.pluck(:name).join(", ")}"
+    group.users.pluck(:name).join(", ")
   end
 
   def get_datetime_jp(datetime)
