@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
   before_action :set_users, only: [:new, :create, :edit, :update]
+  before_action :set_result_users, only: [:new, :edit]
 
   def new
     @group = Group.new
@@ -41,7 +42,12 @@ class GroupsController < ApplicationController
     @users = User.all
   end
 
+  def set_result_users
+    @result_users = User.where('name LIKE(?)', "#{params[:q]}%")
+  end
+
   def group_params
-    params.require(:group).permit(:name, user_ids: [])
+    user_ids = User.where(name: params[:usernames].split(',')).pluck(:id)
+    params.require(:group).permit(:name).merge(user_ids: user_ids)
   end
 end

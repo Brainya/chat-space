@@ -1,21 +1,4 @@
-$white-color: #FFF
-
-@mixin width-height-padding-margin($width: 0, $height: 0, $padding: 0, $margin: 0)
-  width: $width
-  height: $height
-  padding: $padding
-  margin: $margin
-
-@mixin position-size($position: none, $top: 0, $right: 0, $bottom: 0, $left: 0)
-  position: $position
-  top: $top
-  right: $right
-  bottom: $bottom
-  left: $left
-
-@mixin backgroundcolor-color($background-color: $white-color, $color: $white-color)
-  background-color: $background-color
-  color: $color
+@import './mixin'
 
 .contents
   height: 100vh
@@ -51,8 +34,7 @@ $white-color: #FFF
     color: $white-color
     text-decoration: none
   &__item
-    padding: 0 20px 40px
-    margin: 0 -20px
+    @include width-height-padding-margin(auto, auto, 0 20px 40px, 0 -20px)
     transition: background-color 1s
     &:hover
       background-color: #405066
@@ -121,8 +103,7 @@ $white-color: #FFF
   @include position-size(absolute, auto, auto, 0, auto)
   background-color: #AAA
   &__new_message
-    width: 100%
-    height: 50px
+    @include width-height-padding-margin(100%, 50px, auto, auto)
     display: inline-flex
     &--textarea
       @include width-height-padding-margin(100%, 100%, 0 0 0 10px, 0 15px 0 0)

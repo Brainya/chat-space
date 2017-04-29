@@ -1,34 +1,34 @@
-$(function() {
-  $.fn.flash_message = function(options) {
+$(document).on('turbolinks:load', function() {
+  $.fn.flashMessage = function(options) {
     options = $.extend({
       text: 'Done',
       time: 1000,
       how: 'before',
       class_name: ''
-    }, options);
+    },
+    options
+    );
     
     return $(this).each(function() {
       if ($(this).parent().find('.flash_message').get(0))
       return;
-        
-        var message = $('<span />', {
-          'class': 'flash_message ' + options.class_name,
-          text: options.text
-        }).hide().fadeIn('fast');
-        
-        $(this)[options.how](message);
-        
-        message.delay(options.time).fadeOut('normal', function() {
-          $(this).remove();
-        });
+      
+      var message = $(`<span class="flash_message ${options.class_name}">`).append(options.text).hide().fadeIn('fast');
+      
+      $(this)[options.how](message);
+      
+      message.delay(options.time).fadeOut('normal', function() {
+        $(this).remove();
       });
-    };
-
+    });
+  };
+    
   function scrollToBottomMessageList() {
     $('.message-list').animate({
-      scrollTop: $('.message-list')[0].scrollHeight },
+      scrollTop: $('.message-list')[0].scrollHeight
+    },
       'fast'
-      );
+    );
   }
 
   function buildHTML(data) {
@@ -50,14 +50,14 @@ $(function() {
     $('.message-list').append(html);
     scrollToBottomMessageList();
     text_area.val('');
-    $('.send-message-status__success').flash_message({
+    $('.send-message-status__success').flashMessage({
       text: 'メッセージが送信されました',
       how: 'append'
     });
   });
 
   $('.message-input__new_message').on('ajax:error', function(event, data, status) {
-    $('.send-message-status__failure').flash_message({
+    $('.send-message-status__failure').flashMessage({
       text: 'メッセージの送信に失敗しました',
       how: 'append'
     });
