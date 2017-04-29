@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
   before_action :set_users, only: [:new, :create, :edit, :update]
+  before_action :set_result_users, only: [:new, :edit]
 
   def new
     @group = Group.new
-    @result_users = @users.where('name LIKE(?)', "#{params[:q]}%")
   end
 
   def create
@@ -20,7 +20,6 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @result_users = @users.where('name LIKE(?)', "#{params[:q]}%")
   end
 
   def update
@@ -41,6 +40,10 @@ class GroupsController < ApplicationController
 
   def set_users
     @users = User.all
+  end
+
+  def set_result_users
+    @result_users = User.where('name LIKE(?)', "#{params[:q]}%")
   end
 
   def group_params
