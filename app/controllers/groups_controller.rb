@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @result_users = @users.where('name LIKE(?)', "#{params[:q]}%")
   end
 
   def create
@@ -19,6 +20,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @result_users = @users.where('name LIKE(?)', "#{params[:q]}%")
   end
 
   def update
