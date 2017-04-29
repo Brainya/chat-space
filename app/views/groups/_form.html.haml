@@ -11,7 +11,7 @@
       - @group.users.each do |user|
         %button{  type: 'button', id: "button-#{user.name}-selected" }
           = user.name
-    %input#user-list-input.chat-group-form__input{ placeholder: "検索するユーザー名を入力してください" }
+    %input#user-list-input.chat-group-form__input{ placeholder: "検索するユーザー名を入力してください", autocomplete: "off" }
     #user-list-result
 .chat-group-form__field.clearfix
   .chat-group-form__field--left
