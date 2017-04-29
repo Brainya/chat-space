@@ -4,5 +4,11 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :messages, only: [:index, :create]
+    collection do
+      get :ajax_user_list
+    end
+    member do
+      get :ajax_user_list
+    end
   end
 end
