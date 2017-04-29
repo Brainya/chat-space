@@ -1,8 +1,8 @@
+@import './mixin'
+
 .account-page
   &__inner
-    width: 980px
-    margin: 60px auto
-    padding: 60px
+    @include width-height-padding-margin(980px, auto, 60px, 60px auto)
     background-color: #fff
     border: 1px solid #ddd
     border-radius: 5px
@@ -55,14 +55,12 @@
 
     .field-input
       input
-        width: 100%
-        padding: 10px
+        @include width-height-padding-margin(100%, auto, 10px, auto)
         letter-spacing: 1px
 
   .btn
+    @include width-height-padding-margin(auto, 50px, 0 30px, auto)
     display: inline-block
-    height: 50px
-    padding: 0 30px
     line-height: 50px
     letter-spacing: 1px
     text-align: center
@@ -86,18 +84,14 @@
       position: relative
 
       &:after
+        @include position-size(absolute, 0, 0, 0, auto)
         content: ''
         display: block
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
         width: 5px
         background-color: #d65f4c
 
 #error_explanation
-  margin: 20px 0
-  padding: 20px 30px
+  @include width-height-padding-margin(auto, auto, 20px 30px, 20px 0)
   border: 1px solid #ddd
   border-radius: 2px
 
@@ -107,11 +101,9 @@
     font-size: 14px
 
   ul
-    margin: 0
-    padding-left: 17px
+    @include width-height-padding-margin(auto, auto, 0 0 0 17px, 0)
     list-style: square
 
   li
-    margin: 0
-    padding: 0
+    @include width-height-padding-margin(auto, auto, 0, 0)
     font-size: 13px
