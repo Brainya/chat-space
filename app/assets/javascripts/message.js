@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  $.fn.flash_message = function(options) {
+  $.fn.flashMessage = function(options) {
     options = $.extend({
       text: 'Done',
       time: 1000,
@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function() {
     options);
     
     return $(this).each(function() {
-      if ($(this).parent().find('.flash_message').get(0))
+      if ($(this).parent().find('.flashMessage').get(0))
       return;
         
         var message = $(`<span class="flashMessage ${options.class_name}">`).append(options.text).hide().fadeIn('fast');
@@ -49,14 +49,14 @@ $(document).on('turbolinks:load', function() {
     $('.message-list').append(html);
     scrollToBottomMessageList();
     text_area.val('');
-    $('.send-message-status__success').flash_message({
+    $('.send-message-status__success').flashMessage({
       text: 'メッセージが送信されました',
       how: 'append'
     });
   });
 
-    $('.send-message-status__failure').flash_message({
   $('.message-input__new_message').on('ajax:error', function(event, data, status) {
+    $('.send-message-status__failure').flashMessage({
       text: 'メッセージの送信に失敗しました',
       how: 'append'
     });
