@@ -32,12 +32,14 @@ $(document).on('turbolinks:load', function() {
     
     if (preInput !== input) {
       clearTimeout(preFunc);
-      preFunc = setTimeout($.ajax({
-        url: $(this).attr('action'),
-        type: 'GET',
-        data: (`q=${input}`),
-        dataType: 'script'
-      }), 500);
+      preFunc = setTimeout(
+        $.ajax({
+          url: location.href,
+          type: 'GET',
+          data: {'q': input},
+          dataType: 'script'
+        }),
+        500);
     }
     
     preInput = input;
