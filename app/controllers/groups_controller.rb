@@ -46,6 +46,7 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, user_ids: [])
+    user_ids = User.where(name: params[:usernames].split(',')).pluck(:id)
+    params.require(:group).permit(:name).merge(user_ids: user_ids)
   end
 end
