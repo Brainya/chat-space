@@ -1,7 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  var user_list_selected = 'user-list-selected';
-  var user_list_result = 'user-list-result';
-
   function getUsernamesByButtons(buttons) {
     var usernames = [];
 
@@ -9,21 +6,21 @@ $(document).on('turbolinks:load', function() {
       usernames.push($(this).attr('id').replace('button-', '').replace('-selected', ''));
     });
 
-    return usernames
+    return usernames;
   };
 
-  $(`#${user_list_selected}`).on('click', 'button', function() {
+  $(`#user-list-selected`).on('click', 'button', function() {
     $(this).remove();
   });
 
-  $(`#${user_list_result}`).on('click', 'button', function() {
+  $(`#user-list-result`).on('click', 'button', function() {
     var id = $(this).attr('id');
 
-    $(this).attr('id', `${id}-selected`).appendTo(`#${user_list_selected}`);
+    $(this).attr('id', `${id}-selected`).appendTo(`#user-list-selected`);
   });
 
   $('form').on('submit', function() {
-    var usernames = getUsernamesByButtons($(`#${user_list_selected} button`));
+    var usernames = getUsernamesByButtons($(`#user-list-selected button`));
     $('<input>').attr('type', 'hidden').attr('name', 'usernames').attr('value', usernames).appendTo(this);
   });
 
@@ -36,18 +33,19 @@ $(document).on('turbolinks:load', function() {
     if (preInput !== input) {
       clearTimeout(preFunc);
       preFunc = setTimeout($.ajax({
-        url: 'ajax_user_list',
+        url: $(this).attr('action'),
         type: 'GET',
-        data: (`q=${input}`)
+        data: (`q=${input}`),
+        dataType: 'script'
       }), 500);
     }
     
     preInput = input;
   });
 
-  $(`#${user_list_result}`).on('DOMSubtreeModified propertychange', function() {
-    var resultUsernames = getUsernamesByButtons($(`#${user_list_result} button`));
-    var selectedUsernames = getUsernamesByButtons($(`#${user_list_selected} button`));
+  $(`#user-list-result`).on('DOMSubtreeModified propertychange', function() {
+    var resultUsernames = getUsernamesByButtons($(`#user-list-result button`));
+    var selectedUsernames = getUsernamesByButtons($(`#user-list-selected button`));
     
     $.each(resultUsernames, function(index, value) {
       if ($.inArray(value, selectedUsernames) != -1) {

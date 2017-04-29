@@ -1,7 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  var message_list = 'message-list'
-  var message_input = 'message-input'
-
   $.fn.flash_message = function(options) {
     options = $.extend({
       text: 'Done',
@@ -28,7 +25,7 @@ $(document).on('turbolinks:load', function() {
     };
     
   function scrollToBottomMessageList() {
-    $(`.${message_list}`).animate({
+    $(`.message-list`).animate({
       scrollTop: $('.message-list')[0].scrollHeight
     },
       'fast'
@@ -40,18 +37,18 @@ $(document).on('turbolinks:load', function() {
     var date = $(`<span class="date">`).append(data.date);
     var message = $(`<p class="text">`).append(data.message);
 
-    var header = $(`<div class="${message_list}__item--header">`).append(username, date);
-    var body = $(`<div class="${message_list}__item--body">`).append(message);
-    var html = $(`<li class="${message_list}__item">`).append(header, body);
+    var header = $(`<div class="message-list__item--header">`).append(username, date);
+    var body = $(`<div class="message-list__item--body">`).append(message);
+    var html = $(`<li class="message-list__item">`).append(header, body);
 
     return html;
   }
 
-  $(`.${message_input}__new_message`).on('ajax:success', function(event, data, status) {
-    var text_area = $(`.${message_input}__new_message--textarea`);
+  $(`.message-input__new_message`).on('ajax:success', function(event, data, status) {
+    var text_area = $(`.message-input__new_message--textarea`);
     var html = buildHTML(data);
 
-    $(`.${message_list}`).append(html);
+    $(`.message-list`).append(html);
     scrollToBottomMessageList();
     text_area.val('');
     $('.send-message-status__success').flash_message({
@@ -60,14 +57,14 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $(`.${message_input}__new_message`).on('ajax:error', function(event, data, status) {
+  $(`.message-input__new_message`).on('ajax:error', function(event, data, status) {
     $('.send-message-status__failure').flash_message({
       text: 'メッセージの送信に失敗しました',
       how: 'append'
     });
   });
 
-  $(`.${message_list}`).ready(function() {
+  $(`.message-list`).ready(function() {
     scrollToBottomMessageList();
   });
 });
