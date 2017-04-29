@@ -39,7 +39,8 @@ $(document).on('turbolinks:load', function() {
           data: {'q': input},
           dataType: 'script'
         }),
-        500);
+        500
+        );
     }
     
     preInput = input;

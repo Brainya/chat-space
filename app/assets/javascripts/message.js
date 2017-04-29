@@ -6,7 +6,8 @@ $(document).on('turbolinks:load', function() {
       how: 'before',
       class_name: ''
     },
-    options);
+    options
+    );
     
     return $(this).each(function() {
       if ($(this).parent().find('.flashMessage').get(0))
