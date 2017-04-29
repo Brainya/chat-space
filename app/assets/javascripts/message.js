@@ -1,4 +1,7 @@
-$(document).on('ready turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
+  var message_list = 'message-list'
+  var message_input = 'message-input'
+
   $.fn.flash_message = function(options) {
     options = $.extend({
       text: 'Done',
@@ -11,7 +14,7 @@ $(document).on('ready turbolinks:load', function() {
       if ($(this).parent().find('.flash_message').get(0))
       return;
         
-        var message = $('<span />', {
+        var message = $('<span>', {
           'class': 'flash_message ' + options.class_name,
           text: options.text
         }).hide().fadeIn('fast');
@@ -25,7 +28,7 @@ $(document).on('ready turbolinks:load', function() {
     };
     
   function scrollToBottomMessageList() {
-    $('.message-list').animate({
+    $(`.${message_list}`).animate({
       scrollTop: $('.message-list')[0].scrollHeight
     },
       'fast'
@@ -37,18 +40,18 @@ $(document).on('ready turbolinks:load', function() {
     var date = $(`<span class="date">`).append(data.date);
     var message = $(`<p class="text">`).append(data.message);
 
-    var header = $(`<div class="message-list__item--header">`).append(username, date);
-    var body = $(`<div class="message-list__item--body">`).append(message);
-    var html = $(`<li class="message-list__item">`).append(header, body);
+    var header = $(`<div class="${message_list}__item--header">`).append(username, date);
+    var body = $(`<div class="${message_list}__item--body">`).append(message);
+    var html = $(`<li class="${message_list}__item">`).append(header, body);
 
     return html;
   }
 
-  $('.message-input__new_message').on('ajax:success', function(event, data, status) {
-    var text_area = $('.message-input__new_message--textarea');
+  $(`.${message_input}__new_message`).on('ajax:success', function(event, data, status) {
+    var text_area = $(`.${message_input}__new_message--textarea`);
     var html = buildHTML(data);
 
-    $('.message-list').append(html);
+    $(`.${message_list}`).append(html);
     scrollToBottomMessageList();
     text_area.val('');
     $('.send-message-status__success').flash_message({
@@ -57,14 +60,14 @@ $(document).on('ready turbolinks:load', function() {
     });
   });
 
-  $('.message-input__new_message').on('ajax:error', function(event, data, status) {
+  $(`.${message_input}__new_message`).on('ajax:error', function(event, data, status) {
     $('.send-message-status__failure').flash_message({
       text: 'メッセージの送信に失敗しました',
       how: 'append'
     });
   });
 
-  $('.message-list').ready(function() {
+  $(`.${message_list}`).ready(function() {
     scrollToBottomMessageList();
   });
 });
