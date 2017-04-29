@@ -7,7 +7,12 @@
   .chat-group-form__field--left
     = f.label :chat_group_member, "チャットメンバー", class: "chat-group-form__label"
   .chat-group-form__field--right
-    = f.collection_select :user_ids, @users, :id, :name, { include_blank: true }, multiple: true, class: "user-list-input chat-group-form__input"
+    #user-list-selected
+      - @group.users.each do |user|
+        %button{  type: 'button', id: "button-#{user.name}-selected" }
+          = user.name
+    %input#user-list-input.chat-group-form__input{ placeholder: "検索するユーザー名を入力してください" }
+    #user-list-result
 .chat-group-form__field.clearfix
   .chat-group-form__field--left
   .chat-group-form__field--right
