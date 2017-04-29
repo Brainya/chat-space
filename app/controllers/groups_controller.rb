@@ -31,6 +31,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def ajax_user_list
+    @users = User.where('name LIKE(?)', "#{params[:q]}%")
+  end
+
   private
 
   def set_group
