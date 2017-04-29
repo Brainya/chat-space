@@ -2,8 +2,6 @@ $(document).on('turbolinks:load', function() {
   var user_list_selected = 'user-list-selected';
   var user_list_result = 'user-list-result';
 
-  $('form').attr('autocomplete', 'off');
-
   function getUsernamesByButtons(buttons) {
     var usernames = [];
 
