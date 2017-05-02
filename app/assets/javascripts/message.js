@@ -30,10 +30,11 @@ $(document).on('turbolinks:load', function() {
   function buildHTML(data) {
     var username = $(`<span class="username">`).append(data.username);
     var date = $(`<span class="date">`).append(data.date);
+    var image = data.image.url ? $(`<p class="image">`).append(`<img src="${data.image.url}">`) : null;
     var message = $(`<p class="text">`).append(data.message);
 
     var header = $(`<div class="message-list__item--header">`).append(username, date);
-    var body = $(`<div class="message-list__item--body">`).append(message);
+    var body = $(`<div class="message-list__item--body">`).append(image, message);
     var html = $(`<li class="message-list__item">`).append(header, body);
 
     return html;
