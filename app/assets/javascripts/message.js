@@ -24,11 +24,7 @@ $(document).on('turbolinks:load', function() {
   };
     
   function scrollToBottomMessageList() {
-    $('.message-list').animate({
-      scrollTop: $('.message-list')[0].scrollHeight
-    },
-      'fast'
-    );
+    $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
   }
 
   function buildHTML(data) {
