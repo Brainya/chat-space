@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
   function buildHTML(data) {
     var username = $(`<span class="username">`).append(data.username);
     var date = $(`<span class="date">`).append(data.date);
-    var image = data.image.url ? $(`<p class="image">`).append(`<img src="${data.image.url}">`) : null;
+    var image = data.image.url ? $(`<p class="image">`).append(`<a href="${data.image.url}" target="_blank"><img src="${data.image.thumb.url}">`) : null;
     var message = $(`<p class="text">`).append(data.message);
 
     var header = $(`<div class="message-list__item--header">`).append(username, date);
@@ -41,12 +41,14 @@ $(document).on('turbolinks:load', function() {
   }
 
   $('.message-input__new_message').on('ajax:success', function(event, data, status) {
-    var text_area = $('.message-input__new_message--textarea');
+    var text_field = $('.message-input__new_message--textarea');
+    var image_field = $('.message-input__new_message--select-pic input');
     var html = buildHTML(data);
 
     $('.message-list').append(html);
     scrollToBottomMessageList();
-    text_area.val('');
+    text_field.val('');
+    image_field.val('');
     $('.send-message-status__success').flashMessage({
       text: 'メッセージが送信されました',
       how: 'append'
