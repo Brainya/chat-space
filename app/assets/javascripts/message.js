@@ -27,6 +27,17 @@ $(document).on('turbolinks:load', function() {
     $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
   }
 
+  function autoRefreshMessageList() {
+    $.ajax({        
+      url: location.href,
+      dataType: 'html'
+    }).done(function (data) {
+      var out_html = $($.parseHTML(data));
+      $('.message-list').empty().append(out_html.find('.message-list__item'));
+    });
+    scrollToBottomMessageList();
+  }
+
   function buildHTML(data) {
     var username = $(`<span class="username">`).append(data.username);
     var date = $(`<span class="date">`).append(data.date);
