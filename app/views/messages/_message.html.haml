@@ -7,6 +7,6 @@
   .message-list__item--body
     - if message.image
       %p.image
-        = image_tag message.image
+        = link_to image_tag(message.image.thumb), "#{message.image}", target: '_blank'
     %p.text
       = message.message

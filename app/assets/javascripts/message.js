@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
   function buildHTML(data) {
     var username = $(`<span class="username">`).append(data.username);
     var date = $(`<span class="date">`).append(data.date);
-    var image = data.image.url ? $(`<p class="image">`).append(`<img src="${data.image.url}">`) : null;
+    var image = data.image.url ? $(`<p class="image">`).append(`<a href="${data.image.url}" target="_blank"><img src="${data.image.thumb.url}">`) : null;
     var message = $(`<p class="text">`).append(data.message);
 
     var header = $(`<div class="message-list__item--header">`).append(username, date);
