@@ -35,7 +35,6 @@ $(document).on('turbolinks:load', function() {
       preFunc = setTimeout(
         $.ajax({
           url: location.href,
-          type: 'GET',
           data: {'q': input},
           dataType: 'script'
         }),
