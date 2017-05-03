@@ -75,5 +75,6 @@ $(document).on('turbolinks:load', function() {
 
   $('.message-list').ready(function() {
     scrollToBottomMessageList();
+    setInterval(autoRefreshMessageList, 5000);
   });
 });
