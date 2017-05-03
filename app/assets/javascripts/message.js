@@ -41,12 +41,14 @@ $(document).on('turbolinks:load', function() {
   }
 
   $('.message-input__new_message').on('ajax:success', function(event, data, status) {
-    var text_area = $('.message-input__new_message--textarea');
+    var text_field = $('.message-input__new_message--textarea');
+    var image_field = $('.message-input__new_message--select-pic input');
     var html = buildHTML(data);
 
     $('.message-list').append(html);
     scrollToBottomMessageList();
-    text_area.val('');
+    text_field.val('');
+    image_field.val('');
     $('.send-message-status__success').flashMessage({
       text: 'メッセージが送信されました',
       how: 'append'
