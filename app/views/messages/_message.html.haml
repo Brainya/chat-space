@@ -5,5 +5,8 @@
     %span.date
       = get_datetime_jp(message.created_at)
   .message-list__item--body
+    - if message.image
+      %p.image
+        = image_tag message.image
     %p.text
       = message.message

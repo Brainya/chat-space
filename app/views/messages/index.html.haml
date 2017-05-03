@@ -15,7 +15,8 @@
       .send-message-status__success
       .send-message-status__failure
     .message-input
-      = form_for [@group, @message], html: { class: "message-input__new_message" }, remote: true do |f|
+      = form_for [@group, @message], html: { class: "message-input__new_message" }, remote: true, data: { type: :json } do |f|
         = f.text_field :message, placeholder: "type a message", class: "message-input__new_message--textarea", size: "90", autocomplete: "off"
-        %i.message-input__new_message--select-pic.fa.fa-picture-o.fa-lg
+        %label.message-input__new_message--select-pic.fa.fa-picture-o.fa-lg
+          = f.file_field :image, style: "display: none;"
         = f.submit "Send", class: "message-input__new_message--submit-btn"
