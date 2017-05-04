@@ -45,8 +45,6 @@ $(document).on('turbolinks:load', function() {
       url: location.href,
       dataType: 'json'
     }).done(function (data) {
-      $('.message-list').empty();
-
       $.each(data.messages, function(index, value) {
         var html = buildHTML(value);
 
