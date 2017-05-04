@@ -1,12 +1,10 @@
 class MessagesController < ApplicationController
-  before_action :set_groups_group, only: [:index, :create, :set_update_time]
-
-  @@update_time = Time.new
+  before_action :set_groups_group, only: [:index, :create]
 
   def index
     @message = Message.new
-    @messages = @group.messages.where('created_at > ?', @@update_time)
-    
+    @messages = @group.messages.where('created_at > ?', Time.current.ago(5))
+
     respond_to do |format|
       format.html
       format.json
@@ -24,11 +22,7 @@ class MessagesController < ApplicationController
       end
     end
   end
-
-  def set_update_time
-    @@update_time = @group.messages.order(created_at: :desc).pluck(:created_at).first
-  end
-
+  
   private
 
   def set_groups_group

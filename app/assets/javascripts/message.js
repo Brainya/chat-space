@@ -51,10 +51,6 @@ $(document).on('turbolinks:load', function() {
         $('.message-list').append(html);
       });
     }).complete(function() {
-      $.ajax({        
-        url: `messages/set_update_time`
-      });
-      
       scrollToBottomMessageList();
     });
   }
