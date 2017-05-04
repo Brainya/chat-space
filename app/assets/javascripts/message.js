@@ -27,17 +27,6 @@ $(document).on('turbolinks:load', function() {
     $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
   }
 
-  function autoRefreshMessageList() {
-    $.ajax({        
-      url: location.href,
-      dataType: 'html'
-    }).done(function (data) {
-      var out_html = $($.parseHTML(data));
-      $('.message-list').empty().append(out_html.find('.message-list__item'));
-    });
-    scrollToBottomMessageList();
-  }
-
   function buildHTML(data) {
     var username = $(`<span class="username">`).append(data.username);
     var date = $(`<span class="date">`).append(data.date);
@@ -49,6 +38,23 @@ $(document).on('turbolinks:load', function() {
     var html = $(`<li class="message-list__item">`).append(header, body);
 
     return html;
+  }
+
+  function refreshMessageList() {
+    $.ajax({        
+      url: location.href,
+      dataType: 'json'
+    }).done(function (data) {
+      $('.message-list').empty();
+
+      $.each(data.messages, function(index, value) {
+        var html = buildHTML(value);
+
+        $('.message-list').append(html);
+      });
+    }).complete(function() {
+      scrollToBottomMessageList();
+    });
   }
 
   $('.message-input__new_message').on('ajax:success', function(event, data, status) {
@@ -75,6 +81,6 @@ $(document).on('turbolinks:load', function() {
 
   $('.message-list').ready(function() {
     scrollToBottomMessageList();
-    setInterval(autoRefreshMessageList, 5000);
+    setInterval(refreshMessageList, 5000);
   });
 });
