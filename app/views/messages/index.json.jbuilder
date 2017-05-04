@@ -1,4 +1,4 @@
-json.messages @group.messages.each do |message|
+json.messages @messages.each do |message|
   json.username(message.user.name)
   json.date(get_datetime_jp(message.created_at))
   json.image(message.image)
