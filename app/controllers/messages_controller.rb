@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render 'messages.json.jbuilder' }
+      format.json
     end
   end
 
@@ -15,9 +15,9 @@ class MessagesController < ApplicationController
     
     respond_to do |format|
       if @message.save
-        format.json { render :index, status: 200, handlers: 'jbuilder' }
+        format.json
       else
-        format.json { render :index, status: 500, handlers: 'jbuilder' }
+        format.json
       end
     end
   end
