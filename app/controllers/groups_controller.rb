@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
   end
 
   def set_result_users
-    @result_users = User.where('name LIKE(?)', "#{params[:q]}%")
+    @result_users = User.where('name LIKE(?)', "#{params[:keyword]}%")
   end
 
   def group_params

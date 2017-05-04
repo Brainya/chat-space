@@ -40,6 +40,21 @@ $(document).on('turbolinks:load', function() {
     return html;
   }
 
+  function refreshMessageList() {
+    $.ajax({        
+      url: location.href,
+      dataType: 'json'
+    }).done(function (data) {
+      $.each(data.messages, function(index, value) {
+        var html = buildHTML(value);
+
+        $('.message-list').append(html);
+      });
+    }).complete(function() {
+      scrollToBottomMessageList();
+    });
+  }
+
   $('.message-input__new_message').on('ajax:success', function(event, data, status) {
     var text_field = $('.message-input__new_message--textarea');
     var image_field = $('.message-input__new_message--select-pic input');
@@ -64,5 +79,6 @@ $(document).on('turbolinks:load', function() {
 
   $('.message-list').ready(function() {
     scrollToBottomMessageList();
+    setInterval(refreshMessageList, 5000);
   });
 });
