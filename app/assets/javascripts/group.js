@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function() {
   $('#user-list-result').on('click', 'button', function() {
     var id = $(this).attr('id');
 
-    $(this).attr('id', `${id}-selected`).appendTo('#user-list-selected');
+    $(this).attr('id', id + '-selected').appendTo('#user-list-selected');
   });
 
   $('form').on('submit', function() {
@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function() {
     
     $.each(resultUsernames, function(index, value) {
       if ($.inArray(value, selectedUsernames) != -1) {
-        $(`#button-${value}`).remove();
+        $('#button-' + value).remove();
       }
     });
   });
