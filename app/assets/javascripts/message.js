@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
       if ($(this).parent().find('.flash_message').get(0))
       return;
       
-      var message = $("<span class='flash_message ' '${options.class_name}'>").append(options.text).hide().fadeIn('fast');
+      var message = $(`<span class='flash_message ' '${options.class_name}'>`).append(options.text).hide().fadeIn('fast');
       
       $(this)[options.how](message);
       
@@ -28,14 +28,14 @@ $(document).on('turbolinks:load', function() {
   }
 
   function buildHTML(data) {
-    var username = $("<span class='username'>").append(data.username);
-    var date = $("<span class='date'>").append(data.date);
-    var image = data.image.url ? $("<p class='image'>").append("<a href='${data.image.url}' target='_blank'><img src='${data.image.thumb.url}'>") : null;
-    var message = $("<p class='text'>").append(data.message);
+    var username = $(`<span class='username'>`).append(data.username);
+    var date = $(`<span class='date'>`).append(data.date);
+    var image = data.image.url ? $(`<p class='image'>`).append(`<a href='${data.image.url}' target='_blank'><img src='${data.image.thumb.url}'>`) : null;
+    var message = $(`<p class='text'>`).append(data.message);
 
-    var header = $("<div class='message-list__item--header'>").append(username, date);
-    var body = $("<div class='message-list__item--body'>").append(image, message);
-    var html = $("<li class='message-list__item'>").append(header, body);
+    var header = $(`<div class='message-list__item--header'>`).append(username, date);
+    var body = $(`<div class='message-list__item--body'>`).append(image, message);
+    var html = $(`<li class='message-list__item'>`).append(header, body);
 
     return html;
   }
