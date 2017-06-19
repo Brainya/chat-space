@@ -1,24 +1,6 @@
-# README
+# About
+ログイン制の画像投稿機能付き簡易グループチャットアプリです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Screenshots
+![](https://user-images.githubusercontent.com/23380926/27302419-0369b26c-5572-11e7-8ece-2792fef9a26f.png)
+![](https://user-images.githubusercontent.com/23380926/27302422-05a7d4e6-5572-11e7-9b21-8ec68943eafe.png)
